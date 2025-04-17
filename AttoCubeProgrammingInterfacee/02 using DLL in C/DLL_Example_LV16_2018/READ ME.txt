@@ -1,0 +1,9 @@
+The Files here are an example of using Code::Blocks to create a project using the attoDRY DLL. 
+
+The DLL reuires the following to be installed:
+Labview 2016 32bit runtime engine 
+VISA run time engine 
+
+In the bin folder, you will find the compiled executable. You can run this.
+
+main.cpp is the main source file.

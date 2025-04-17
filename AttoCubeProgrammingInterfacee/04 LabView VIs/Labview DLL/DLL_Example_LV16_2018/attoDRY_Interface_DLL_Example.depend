@@ -1,0 +1,309 @@
+# depslib dependency file v1.0
+1404310880 source:z:\eigene dateien server\andre\attodry\attodry1100\software\attodry1100_interface_dll_example\main.cpp
+	<iostream>
+
+1404905837 source:c:\users\dejong\desktop\attodry1100_interface_dll_example\main.cpp
+	<iostream>
+	<attoDRY1100Interface.h>
+	<ctime>
+
+1404904816 c:\users\dejong\desktop\attodry1100_interface_dll_example\attodry1100interface.h
+	"extcode.h"
+
+1340731622 c:\program files (x86)\national instruments\labview 2012\cintools\extcode.h
+	"platdefines.h"
+	"fundtypes.h"
+	<Carbon/Carbon.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+
+1404312508 c:\program files (x86)\national instruments\labview 2012\cintools\platdefines.h
+	<Carbon/Carbon.h>
+
+1340731622 c:\program files (x86)\national instruments\labview 2012\cintools\fundtypes.h
+	"platdefines.h"
+	<stdint.h>
+	<stdint.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+	<cvidef.h>
+	<stddef.h>
+	<math.h>
+	<float.h>
+
+1340731622 c:\program files (x86)\national instruments\labview 2012\cintools\lv_prolog.h
+	"some_header.h"
+	"platdefines.h"
+	"lv_prolog.h"
+	"lv_epilog.h"
+	"platdefines.h"
+
+1340731622 c:\program files (x86)\national instruments\labview 2012\cintools\lv_epilog.h
+
+1340731622 c:\users\dejong\desktop\attodry1100_interface_dll_example\extcode.h
+	"platdefines.h"
+	"fundtypes.h"
+	<Carbon/Carbon.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+
+1404312508 c:\users\dejong\desktop\attodry1100_interface_dll_example\platdefines.h
+	<Carbon/Carbon.h>
+
+1340731622 c:\users\dejong\desktop\attodry1100_interface_dll_example\fundtypes.h
+	"platdefines.h"
+	<stdint.h>
+	<stdint.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+	<cvidef.h>
+	<stddef.h>
+	<math.h>
+	<float.h>
+
+1340731622 c:\users\dejong\desktop\attodry1100_interface_dll_example\lv_prolog.h
+	"some_header.h"
+	"platdefines.h"
+	"lv_prolog.h"
+	"lv_epilog.h"
+	"platdefines.h"
+
+1340731622 c:\users\dejong\desktop\attodry1100_interface_dll_example\lv_epilog.h
+
+1404908224 source:z:\production\mic\product information\01 attocryo\attodry1100\software\attodry1100_interface_dll_example\main.cpp
+	<iostream>
+	<attoDRY1100Interface.h>
+	<ctime>
+	<stdlib.h>
+
+1404904816 z:\production\mic\product information\01 attocryo\attodry1100\software\attodry1100_interface_dll_example\attodry1100interface.h
+	"extcode.h"
+
+1340731622 z:\production\mic\product information\01 attocryo\attodry1100\software\attodry1100_interface_dll_example\extcode.h
+	"platdefines.h"
+	"fundtypes.h"
+	<Carbon/Carbon.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+
+1404312508 z:\production\mic\product information\01 attocryo\attodry1100\software\attodry1100_interface_dll_example\platdefines.h
+	<Carbon/Carbon.h>
+
+1340731622 z:\production\mic\product information\01 attocryo\attodry1100\software\attodry1100_interface_dll_example\fundtypes.h
+	"platdefines.h"
+	<stdint.h>
+	<stdint.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+	<cvidef.h>
+	<stddef.h>
+	<math.h>
+	<float.h>
+
+1340731622 z:\production\mic\product information\01 attocryo\attodry1100\software\attodry1100_interface_dll_example\lv_prolog.h
+	"some_header.h"
+	"platdefines.h"
+	"lv_prolog.h"
+	"lv_epilog.h"
+	"platdefines.h"
+
+1340731622 z:\production\mic\product information\01 attocryo\attodry1100\software\attodry1100_interface_dll_example\lv_epilog.h
+
+1510598750 source:e:\attodry_interface_dll_example\main.cpp
+	<iostream>
+	<attoDRYLib2.h>
+	<ctime>
+	<stdlib.h>
+
+1510598014 e:\attodry_interface_dll_example\attodrylib2.h
+	"extcode.h"
+
+1372702434 e:\attodry_interface_dll_example\extcode.h
+	"platdefines.h"
+	"fundtypes.h"
+	<Carbon/Carbon.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+
+1510559540 e:\attodry_interface_dll_example\platdefines.h
+	<Carbon/Carbon.h>
+
+1372702434 e:\attodry_interface_dll_example\fundtypes.h
+	"platdefines.h"
+	<stdint.h>
+	<stdint.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+	<cvidef.h>
+	<stddef.h>
+	<math.h>
+	<float.h>
+
+1372702434 e:\attodry_interface_dll_example\lv_prolog.h
+	"some_header.h"
+	"platdefines.h"
+	"lv_prolog.h"
+	"lv_epilog.h"
+	"platdefines.h"
+
+1372702434 e:\attodry_interface_dll_example\lv_epilog.h
+
+1510682378 source:e:\attodry_interface_dll_example - kopie\main.cpp
+	<iostream>
+	<attoDRYLibv3.h>
+	<ctime>
+	<stdlib.h>
+
+1510598014 e:\attodry_interface_dll_example - kopie\attodrylib2.h
+	"extcode.h"
+
+1372702434 e:\attodry_interface_dll_example - kopie\extcode.h
+	"platdefines.h"
+	"fundtypes.h"
+	<Carbon/Carbon.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+
+1510559540 e:\attodry_interface_dll_example - kopie\platdefines.h
+	<Carbon/Carbon.h>
+
+1372702434 e:\attodry_interface_dll_example - kopie\fundtypes.h
+	"platdefines.h"
+	<stdint.h>
+	<stdint.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+	<cvidef.h>
+	<stddef.h>
+	<math.h>
+	<float.h>
+
+1372702434 e:\attodry_interface_dll_example - kopie\lv_prolog.h
+	"some_header.h"
+	"platdefines.h"
+	"lv_prolog.h"
+	"lv_epilog.h"
+	"platdefines.h"
+
+1372702434 e:\attodry_interface_dll_example - kopie\lv_epilog.h
+
+1510598014 e:\attodry_interface_dll_example - kopie\attodrylibv3.h
+	"extcode.h"
+
+1510682378 source:e:\attodry_interface_dll_example_kopie\main.cpp
+	<iostream>
+	<attoDRYLibv3.h>
+	<ctime>
+	<stdlib.h>
+
+1510598014 e:\attodry_interface_dll_example_kopie\attodrylibv3.h
+	"extcode.h"
+
+1372702434 e:\attodry_interface_dll_example_kopie\extcode.h
+	"platdefines.h"
+	"fundtypes.h"
+	<Carbon/Carbon.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+
+1510559540 e:\attodry_interface_dll_example_kopie\platdefines.h
+	<Carbon/Carbon.h>
+
+1372702434 e:\attodry_interface_dll_example_kopie\fundtypes.h
+	"platdefines.h"
+	<stdint.h>
+	<stdint.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+	<cvidef.h>
+	<stddef.h>
+	<math.h>
+	<float.h>
+
+1372702434 e:\attodry_interface_dll_example_kopie\lv_prolog.h
+	"some_header.h"
+	"platdefines.h"
+	"lv_prolog.h"
+	"lv_epilog.h"
+	"platdefines.h"
+
+1372702434 e:\attodry_interface_dll_example_kopie\lv_epilog.h
+
+1512490662 source:e:\transfer\attodry_interface_dll_example_11_2017\main.cpp
+	<iostream>
+	<attoDRYLibv4.h>
+	<ctime>
+	<stdlib.h>
+
+1512490900 e:\transfer\attodry_interface_dll_example_11_2017\attodrylibv4.h
+	"extcode.h"
+
+1372702434 e:\transfer\attodry_interface_dll_example_11_2017\extcode.h
+	"platdefines.h"
+	"fundtypes.h"
+	<Carbon/Carbon.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+
+1510559540 e:\transfer\attodry_interface_dll_example_11_2017\platdefines.h
+	<Carbon/Carbon.h>
+
+1372702434 e:\transfer\attodry_interface_dll_example_11_2017\fundtypes.h
+	"platdefines.h"
+	<stdint.h>
+	<stdint.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+	<cvidef.h>
+	<stddef.h>
+	<math.h>
+	<float.h>
+
+1372702434 e:\transfer\attodry_interface_dll_example_11_2017\lv_prolog.h
+	"some_header.h"
+	"platdefines.h"
+	"lv_prolog.h"
+	"lv_epilog.h"
+	"platdefines.h"
+
+1372702434 e:\transfer\attodry_interface_dll_example_11_2017\lv_epilog.h
+
+1526999780 source:e:\attodry interface dll\attodry_interface_dll_example_lv16_2018\main.cpp
+	<iostream>
+	<attoDRYLib.h>
+	<ctime>
+	<stdlib.h>
+
+1526981346 e:\attodry interface dll\attodry_interface_dll_example_lv16_2018\attodrylib.h
+	"extcode.h"
+
+1465402604 e:\attodry interface dll\attodry_interface_dll_example_lv16_2018\extcode.h
+	"platdefines.h"
+	"fundtypes.h"
+	<Carbon/Carbon.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+
+1526999858 e:\attodry interface dll\attodry_interface_dll_example_lv16_2018\platdefines.h
+	<Carbon/Carbon.h>
+
+1465402604 e:\attodry interface dll\attodry_interface_dll_example_lv16_2018\fundtypes.h
+	"platdefines.h"
+	<stdint.h>
+	<stdint.h>
+	"lv_prolog.h"
+	"lv_epilog.h"
+	<cvidef.h>
+	<stddef.h>
+	<math.h>
+	<float.h>
+
+1465402604 e:\attodry interface dll\attodry_interface_dll_example_lv16_2018\lv_prolog.h
+	"some_header.h"
+	"platdefines.h"
+	"lv_prolog.h"
+	"lv_epilog.h"
+	"platdefines.h"
+
+1465402604 e:\attodry interface dll\attodry_interface_dll_example_lv16_2018\lv_epilog.h
+
