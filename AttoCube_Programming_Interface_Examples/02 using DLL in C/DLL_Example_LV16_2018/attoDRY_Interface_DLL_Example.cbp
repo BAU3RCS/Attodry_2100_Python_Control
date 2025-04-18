@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="attoDRY_Interface_DLL_Example" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/attoDRY Interface DLL Example" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="attoDRYLib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/attoDRY Interface DLL Example" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="." />
+		</Compiler>
+		<Linker>
+			<Add directory="." />
+		</Linker>
+		<Unit filename="ILVDataInterface.h" />
+		<Unit filename="ILVTypeInterface.h" />
+		<Unit filename="attoDRYLib.h" />
+		<Unit filename="extcode.h" />
+		<Unit filename="fundtypes.h" />
+		<Unit filename="fundtypes_initial.h" />
+		<Unit filename="hosttype.h" />
+		<Unit filename="lv_epilog.h" />
+		<Unit filename="lv_prolog.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="platdefines.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
