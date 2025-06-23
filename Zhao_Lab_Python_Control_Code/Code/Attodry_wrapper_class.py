@@ -1,27 +1,37 @@
 import os
-from ctypes import c_int32, c_float, c_char_p, c_int, c_uint8, POINTER
-from enum import IntEnum
+import ctypes
+from ctypes import c_int32, c_float, c_char_p, c_int, c_uint8, c_uint16, POINTER
+
 
 loc = r"..\64 bit\attoDRYxyz64bit.dll"
+
+if not os.path.isfile(loc):
+    raise Exception("DLL not found")
 
 # Helper type aliases
 IntPointer = POINTER(c_int)
 FloatPointer = POINTER(c_float)
 
-from enum import IntEnum
 
-class AttoDevice(IntEnum):
+
+"""
+There are specific functions for getting the x,z magnetic field and the command without
+an x or z specificied is for the y dir.
+
+"""
+
+# Define ctypes wrappers for the additional AttoDRY C API
+class AttoDRYInterface:
+
     ATTODRY2100 = 1
 
-class TimeDelay(IntEnum):
+    # Can probably remove
     _1SECOND     = 0
     _5SECONDS    = 1
     _30SECONDS   = 2
     _1MINUTE     = 3
     _5MINUTES    = 4
 
-# Define ctypes wrappers for the additional AttoDRY C API
-class AttoDRYInterface:
     """
     Python ctypes interface for the AttoDRY cryostat control system.
     Wraps the AttoDRY C API for device communication and control.
@@ -71,7 +81,7 @@ class AttoDRYInterface:
         Args:
             com_port (str): Name of the COM port (e.g., 'COM3').
         """
-        self._check_return(self._dll.AttoDRY_Interface_Connect(com_port.encode('utf-8')))
+        self._check_return(self._dll.AttoDRY_Interface_Connect(ctypes.c_char_p(com_port.encode('utf-8'))))
 
     def Disconnect(self) -> None:
         """
@@ -139,7 +149,7 @@ class AttoDRYInterface:
         the button is white.
         """
         status = c_int32()
-        self._dll.AttoDRY_Interface_isGoingToBaseTemperature(byref(status))
+        self._dll.AttoDRY_Interface_isGoingToBaseTemperature(ctypes.byref(status))
         return bool(status.value)
 
 
@@ -350,7 +360,7 @@ class AttoDRYInterface:
         Returns the VTI Heater power, in Watts.
         """
         power = c_float()
-        self._dll.AttoDRY_Interface_getVtiHeaterPower(byref(power))
+        self._dll.AttoDRY_Interface_getVtiHeaterPower(ctypes.byref(power))
         return power.value
 
     def GetVtiTemperature(self) -> float:
@@ -370,7 +380,7 @@ class AttoDRYInterface:
         the icon is white.
         """
         status = c_int32()
-        self._dll.AttoDRY_Interface_isControllingField(byref(status))
+        self._dll.AttoDRY_Interface_isControllingField(ctypes.byref(status))
         return bool(status.value)
 
     def is_controlling_temperature(self) -> bool:
@@ -380,7 +390,7 @@ class AttoDRYInterface:
         icon is white.
         """
         status = c_int32()
-        self._dll.AttoDRY_Interface_isControllingTemperature(byref(status))
+        self._dll.AttoDRY_Interface_isControllingTemperature(ctypes.byref(status))
         return bool(status.value)
 
 
@@ -404,7 +414,7 @@ class AttoDRYInterface:
         Power = Voltage^2/((HeaterResistance + WireResistance)^2) * HeaterResistance
         """
         resistance = c_float()
-        self._dll.AttoDRY_Interface_getSampleHeaterWireResistance(byref(resistance))
+        self._dll.AttoDRY_Interface_getSampleHeaterWireResistance(ctypes.byref(resistance))
         return resistance.value
 
 
@@ -529,7 +539,7 @@ class AttoDRYInterface:
             float: Magnetic field in Tesla.
         """
         field = c_float()
-        self._check_return(self._dll.AttoDRY_Interface_getMagnetField(ctypes.byref(field)))
+        self._check_return(self._dll.AttoDRY_Interface_getMagneticField(ctypes.byref(field)))
         return field.value
 
     def GetMagnetSetpoint(self) -> float:
@@ -540,17 +550,17 @@ class AttoDRYInterface:
             float: Field setpoint in Tesla.
         """
         setpoint = c_float()
-        self._check_return(self._dll.AttoDRY_Interface_getMagnetSetpoint(ctypes.byref(setpoint)))
+        self._check_return(self._dll.AttoDRY_Interface_getMagneticFieldSetPoint(ctypes.byref(setpoint)))
         return setpoint.value
 
-    def SetMagnetSetpoint(self, setpoint: float) -> None:
+    def SetUserMagnetSetpoint(self, setpoint: float) -> None:
         """
         Sets the magnetic field setpoint.
 
         Args:
             setpoint (float): Desired field in Tesla.
         """
-        self._check_return(self._dll.AttoDRY_Interface_setMagnetSetpoint(c_float(setpoint)))
+        self._check_return(self._dll.AttoDRY_Interface_setUserMagneticField(c_float(setpoint)))
 
     def GetMagnetSweepRate(self) -> float:
         """
@@ -1027,7 +1037,7 @@ class AttoDRYInterface:
         Gets the current action message. If an action is being performed, it will 
         be shown here. It is similar to the pop-ups on the display.
         """
-        buffer = create_string_buffer(length)
+        buffer = ctypes.create_string_buffer(length)
         self._dll.AttoDRY_Interface_getActionMessage(buffer, c_int32(length))
         return buffer.value.decode('utf-8')
 
@@ -1035,7 +1045,7 @@ class AttoDRYInterface:
         """
         Returns the current error message.
         """
-        buffer = create_string_buffer(length)
+        buffer = ctypes.create_string_buffer(length)
         self._dll.AttoDRY_Interface_getAttodryErrorMessage(buffer, c_int32(length))
         return buffer.value.decode('utf-8')
 
@@ -1044,7 +1054,7 @@ class AttoDRYInterface:
         Returns the current error code.
         """
         error_code = c_uint8()
-        self._dll.AttoDRY_Interface_getAttodryErrorStatus(byref(error_code))
+        self._dll.AttoDRY_Interface_getAttodryErrorStatus(ctypes.byref(error_code))
         return error_code.value
 
     def get_derivative_gain(self) -> float:
@@ -1061,7 +1071,7 @@ class AttoDRYInterface:
         the Exchange Heater gain is returned
         """
         gain = c_float()
-        self._dll.AttoDRY_Interface_getDerivativeGain(byref(gain))
+        self._dll.AttoDRY_Interface_getDerivativeGain(ctypes.byref(gain))
         return gain.value
 
     def get_integral_gain(self) -> float:
@@ -1078,7 +1088,7 @@ class AttoDRYInterface:
         the Exchange Heater gain is returned
         """
         gain = c_float()
-        self._dll.AttoDRY_Interface_getIntegralGain(byref(gain))
+        self._dll.AttoDRY_Interface_getIntegralGain(ctypes.byref(gain))
         return gain.value
 
     def get_magnetic_field(self) -> float:
@@ -1086,7 +1096,7 @@ class AttoDRYInterface:
         Gets the current magnetic field (in T).
         """
         value = c_float()
-        self._dll.AttoDRY_Interface_getMagneticField(byref(value))
+        self._dll.AttoDRY_Interface_getMagneticField(ctypes.byref(value))
         return value.value
 
     def get_magnetic_field_axis(self, axis) -> float:
@@ -1107,7 +1117,7 @@ class AttoDRYInterface:
         Gets the current magnetic field set point (in T).
         """
         value = c_float()
-        self._dll.AttoDRY_Interface_getMagneticFieldSetPoint(byref(value))
+        self._dll.AttoDRY_Interface_getMagneticFieldSetPoint(ctypes.byref(value))
         return value.value
 
 
@@ -1150,7 +1160,7 @@ class AttoDRYInterface:
         the Exchange Heater gain is returned
         """
         gain = c_float()
-        self._dll.AttoDRY_Interface_getProportionalGain(byref(gain))
+        self._dll.AttoDRY_Interface_getProportionalGain(ctypes.byref(gain))
         return gain.value
 
     def get_sample_heater_maximum_power(self) -> float:
@@ -1165,7 +1175,7 @@ class AttoDRYInterface:
         the attoDRY is turned off.
         """
         power = c_float()
-        self._dll.AttoDRY_Interface_getSampleHeaterMaximumPower(byref(power))
+        self._dll.AttoDRY_Interface_getSampleHeaterMaximumPower(ctypes.byref(power))
         return power.value
 
     def get_sample_heater_power(self) -> float:
@@ -1173,7 +1183,7 @@ class AttoDRYInterface:
         Gets the current Sample Heater power, in Watts.
         """
         power = c_float()
-        self._dll.AttoDRY_Interface_getSampleHeaterPower(byref(power))
+        self._dll.AttoDRY_Interface_getSampleHeaterPower(ctypes.byref(power))
         return power.value
 
     def get_sample_heater_resistance(self) -> float:
@@ -1190,7 +1200,7 @@ class AttoDRYInterface:
         Power = Voltage^2/((HeaterResistance + WireResistance)^2) * HeaterResistance
         """
         resistance = c_float()
-        self._dll.AttoDRY_Interface_getSampleHeaterResistance(byref(resistance))
+        self._dll.AttoDRY_Interface_getSampleHeaterResistance(ctypes.byref(resistance))
         return resistance.value
 
     def query_reservoir_tset_cold_sample(self):
@@ -1224,7 +1234,7 @@ class AttoDRYInterface:
         Gets the reservoir Tset cold sample value (in Kelvin).
         """
         value = c_float()
-        self._dll.AttoDRY_Interface_getReservoirTsetColdSample(byref(value))
+        self._dll.AttoDRY_Interface_getReservoirTsetColdSample(ctypes.byref(value))
         return value.value
 
     def get_reservoir_tset_warm_sample(self) -> float:
@@ -1234,7 +1244,7 @@ class AttoDRYInterface:
         Gets the reservoir Tset warm sample value (in Kelvin).
         """
         value = c_float()
-        self._dll.AttoDRY_Interface_getReservoirTsetWarmSample(byref(value))
+        self._dll.AttoDRY_Interface_getReservoirTsetWarmSample(ctypes.byref(value))
         return value.value
 
     def get_reservoir_tset_warm_magnet(self) -> float:
@@ -1244,7 +1254,7 @@ class AttoDRYInterface:
         Gets the reservoir Tset warm magnet value (in Kelvin).
         """
         value = c_float()
-        self._dll.AttoDRY_Interface_getReservoirTsetWarmMagnet(byref(value))
+        self._dll.AttoDRY_Interface_getReservoirTsetWarmMagnet(ctypes.byref(value))
         return value.value
 
     def set_reservoir_tset_cold_sample(self, temperature_k: float):
@@ -1360,8 +1370,8 @@ class AttoDRYInterface:
             str: The error or status message from the DLL.
         """
         err_str_len = 512
-        err_str = create_string_buffer(err_str_len)
-        module_ptr = c_void_p()  # Assuming no specific module context is needed
+        err_str = ctypes.create_string_buffer(err_str_len)
+        module_ptr = ctypes.c_void_p()  # Assuming no specific module context is needed
         result = self._dll.LVDLLStatus(err_str, err_str_len, ctypes.byref(module_ptr))
         if result != 0:
             raise RuntimeError(f"LVDLLStatus returned error code {result}")
