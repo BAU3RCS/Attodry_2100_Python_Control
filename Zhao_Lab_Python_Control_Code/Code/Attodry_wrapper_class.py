@@ -59,7 +59,7 @@ class AttoDRYInterface:
         if ret_code != 0:
             raise RuntimeError(f"C function returned error code: {ret_code}")
 
-    def Begin(self, device:int=ATTODRY2100) -> None:
+    def begin(self, device:int=ATTODRY2100) -> None:
         """
         Starts the server that communicates with the attoDRY and loads the software 
         for the device specified by Device. This VI needs to be run before 
@@ -73,7 +73,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_begin(c_uint16(device)))
 
-    def Connect(self, com_port:str="COM3") -> None:
+    def connect(self, com_port:str="COM3") -> None:
         """
         Connects to the attoDRY using the specified COM Port.
         Establishes connection with the AttoDRY over the specified COM port.
@@ -83,7 +83,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_Connect(ctypes.c_char_p(com_port.encode('utf-8'))))
 
-    def Disconnect(self) -> None:
+    def disconnect(self) -> None:
         """
         Terminates the connection with the AttoDRY device.
 
@@ -92,14 +92,14 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_Disconnect())
 
-    def Cancel(self) -> None:
+    def cancel(self) -> None:
         """
         Sends a 'Cancel' command to the attoDRY.
         Use this method to cancel an ongoing action or respond negatively to a pop-up prompt.
         """
         self._check_return(self._dll.AttoDRY_Interface_Cancel())
 
-    def Confirm(self) -> None:
+    def confirm(self) -> None:
         """
         Sends a 'Confirm' command to the attoDRY.
         Use this method to confirm an action or respond positively to a pop-up prompt.
@@ -107,7 +107,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_Confirm())
 
 
-    def End(self) -> None:
+    def end(self) -> None:
         """
         Stops the server that is communicating with the attoDRY. The Disconnect
         should be run before this. This VI should be run before closing your program.
@@ -116,7 +116,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_end())
 
-    def IsConnected(self) -> bool:
+    def is_connected(self) -> bool:
         """
         Checks whether the AttoDRY is currently connected.
 
@@ -127,7 +127,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_isDeviceConnected(ctypes.byref(status)))
         return bool(status.value)
 
-    def IsInitialised(self) -> bool:
+    def is_initialised(self) -> bool:
         """
         Checks to see if the attoDRY has initialised. Use this VI after you have 
         connected and before sending any commands or getting any data from the 
@@ -153,7 +153,7 @@ class AttoDRYInterface:
         return bool(status.value)
 
 
-    def DownloadSampleTempSensorCalibrationCurve(self, save_path: str) -> None:
+    def download_sample_temp_sensor_calibration_curve(self, save_path: str) -> None:
         """
         Starts the download of the Sample Temperature Sensor Calibration 
         Curve. The curve will be saved to Save Path.
@@ -170,7 +170,7 @@ class AttoDRYInterface:
             self._dll.AttoDRY_Interface_downloadSampleTemperatureSensorCalibrationCurve(save_path.encode('utf-8'))
         )
 
-    def DownloadTempSensorCalibrationCurve(self, user_curve_number: int, path: str) -> None:
+    def download_temp_sensor_calibration_curve(self, user_curve_number: int, path: str) -> None:
         """
         Starts the download of the Temperature Sensor Calibration Curve at User
         Curve Number on the temperature monitor. The curve will be saved to Path
@@ -192,7 +192,7 @@ class AttoDRYInterface:
         )
 
 
-    def ToggleExchangeHeaterControl(self) -> None:
+    def toggle_exchange_heater_control(self) -> None:
         """
         Toggles control over the exchange/VTI heater.
 
@@ -202,7 +202,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_toggleExchangeHeaterControl())
 
-    def IsExchangeHeaterOn(self) -> bool:
+    def is_exchange_heater_on(self) -> bool:
         """
         Checks if the exchange heater is currently on.
 
@@ -216,7 +216,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_isExchangeHeaterOn(ctypes.byref(status)))
         return bool(status.value)
 
-    def ToggleCryostatInValve(self):
+    def toggle_cryostat_in_valve(self):
         """
         Toggles the Cryostat In valve. If it is closed, it will 
         open and if it is open, it will close. 
@@ -225,7 +225,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_toggleCryostatInValve())
 
-    def ToggleCryostatOutValve(self):
+    def toggle_cryostat_out_valve(self):
         """
         Toggles the Cryostat Out valve. If it is closed, it will 
         open and if it is open, it will close.
@@ -234,7 +234,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_toggleCryostatOutValve())
 
-    def ToggleDumpInValve(self):
+    def toggle_dump_in_valve(self):
         """
         Toggles the inner volume valve. If it is closed, it will 
         open and if it is open, it will close.
@@ -243,7 +243,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_toggleDumpInValve())
 
-    def ToggleDumpOutValve(self):
+    def toggle_dump_out_valve(self):
         """
         Toggles the outer volume valve. If it is closed, it will 
         open and if it is open, it will close. 
@@ -252,7 +252,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_toggleDumpOutValve())
 
-    def GetCryostatInValveStatus(self) -> int:
+    def get_cryostat_in_valve_status(self) -> int:
         """
         Retrieves the status of the Cryostat In valve.
         Gets the current status of the Cryostat In valve.
@@ -264,7 +264,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getCryostatInValve(ctypes.byref(status)))
         return status.value
 
-    def GetCryostatOutValveStatus(self) -> int:
+    def get_cryostat_out_valve_status(self) -> int:
         """
         Gets the current status of the Cryostat Out valve.
 
@@ -274,7 +274,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getCryostatOutValve(ctypes.byref(status)))
         return status.value
 
-    def GetDumpInValveStatus(self) -> int:
+    def get_dump_in_valve_status(self) -> int:
         """
         Gets the current status of the Dump In volume valve
 
@@ -284,7 +284,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getDumpInValve(ctypes.byref(status)))
         return status.value
 
-    def GetDumpOutValveStatus(self) -> int:
+    def get_dump_out_valve_status(self) -> int:
         """
         Gets the current status of the outer volume valve.
         
@@ -294,7 +294,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getDumpOutValve(ctypes.byref(status)))
         return status.value
 
-    def GetCryostatInPressure(self) -> float:
+    def get_cryostat_in_pressure(self) -> float:
         """
         Reads the current Cryostat In pressure.
 
@@ -307,7 +307,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getCryostatInPressure(ctypes.byref(pressure)))
         return pressure.value
 
-    def GetCryostatOutPressure(self) -> float:
+    def get_cryostat_out_pressure(self) -> float:
         """
         Gets the Cryostat Outlet pressure
         Reads the current Cryostat Out pressure (in mbar).
@@ -316,7 +316,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getCryostatOutPressure(ctypes.byref(pressure)))
         return pressure.value
 
-    def GetDumpPressure(self) -> float:
+    def get_dump_pressure(self) -> float:
         """
         Gets the pressure at the Dump.
         Reads the current Dump pressure (in mbar).
@@ -325,7 +325,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getDumpPressure(ctypes.byref(pressure)))
         return pressure.value
 
-    def GetReservoirHeaterPower(self) -> float:
+    def get_reservoir_heater_power(self) -> float:
         """
         Gets the current power, in Watts, being produced by the reservoir heater.
 
@@ -337,7 +337,7 @@ class AttoDRYInterface:
         return val.value
 
 
-    def GetReservoirTemperature(self) -> float:
+    def get_reservoir_temperature(self) -> float:
         """
         Gets the current temperature of the Helium Reservoir, in Kelvin
         Reads the reservoir temperature in Kelvin.
@@ -346,7 +346,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getReservoirTemperature(ctypes.byref(temp)))
         return temp.value
 
-    def Get4KStageTemperature(self) -> float:
+    def get_4kstage_temperature(self) -> float:
         """
         Returns the temperature of the 4 Kelvin Stage
         Reads the 4K stage temperature in Kelvin.
@@ -363,7 +363,7 @@ class AttoDRYInterface:
         self._dll.AttoDRY_Interface_getVtiHeaterPower(ctypes.byref(power))
         return power.value
 
-    def GetVtiTemperature(self) -> float:
+    def get_vti_temperature(self) -> float:
         """
         Returns the temperature of the VTI
 
@@ -418,7 +418,7 @@ class AttoDRYInterface:
         return resistance.value
 
 
-    def GetSampleTemperature(self) -> float:
+    def get_sample_temperature(self) -> float:
         """
         Gets the sample temperature in Kelvin. This value is updated whenever a 
         status message is received from the attoDRY.
@@ -427,7 +427,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getSampleTemperature(ctypes.byref(temp)))
         return temp.value
 
-    def GetUserTemperature(self) -> float:
+    def get_user_temperature(self) -> float:
         """
         Gets the user set point temperature, in Kelvin. This value is updated 
         whenever a status message is received from the attoDRY.
@@ -438,7 +438,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getUserTemperature(ctypes.byref(temp)))
         return temp.value
 
-    def GetTemperatureSetpoint(self) -> float:
+    def get_temperature_setpoint(self) -> float:
         """
         Gets the current temperature setpoint for the sample heater.
 
@@ -449,7 +449,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getTemperatureSetpoint(ctypes.byref(temp)))
         return temp.value
 
-    def GetTemperatureSetpointLimit(self) -> float:
+    def get_temperature_setpoint_limit(self) -> float:
         """
         Gets the maximum allowable temperature setpoint.
 
@@ -460,7 +460,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getTemperatureSetpointLimit(ctypes.byref(temp)))
         return temp.value
 
-    def SetTemperatureSetpoint(self, temp: float) -> None:
+    def set_temperature_setpoint(self, temp: float) -> None:
         """
         Sets the desired sample temperature setpoint.
 
@@ -469,7 +469,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_setTemperatureSetpoint(c_float(temp)))
 
-    def GetTemperatureRampRate(self) -> float:
+    def get_temperature_ramp_rate(self) -> float:
         """
         Gets the current temperature ramp rate.
 
@@ -480,7 +480,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getTemperatureRampRate(ctypes.byref(rate)))
         return rate.value
 
-    def SetTemperatureRampRate(self, rate: float) -> None:
+    def set_temperature_ramp_rate(self, rate: float) -> None:
         """
         Sets the temperature ramp rate.
 
@@ -489,7 +489,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_setTemperatureRampRate(c_float(rate)))
 
-    def GetHeaterOutput(self) -> float:
+    def get_heater_output(self) -> float:
         """
         Gets the current heater output percentage.
 
@@ -500,7 +500,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getHeaterOutput(ctypes.byref(output)))
         return output.value
 
-    def GetHeaterRange(self) -> int:
+    def get_heater_range(self) -> int:
         """
         Gets the current heater range setting.
 
@@ -511,7 +511,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getHeaterRange(ctypes.byref(range_val)))
         return range_val.value
 
-    def SetHeaterRange(self, range_val: int) -> None:
+    def set_heater_range(self, range_val: int) -> None:
         """
         Sets the heater range.
 
@@ -520,7 +520,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_setHeaterRange(c_int(range_val)))
 
-    def IsHeaterOn(self) -> bool:
+    def is_heater_on(self) -> bool:
         """
         Checks if the heater is currently on.
 
@@ -531,7 +531,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_isHeaterOn(ctypes.byref(status)))
         return bool(status.value)
 
-    def GetMagnetField(self) -> float:
+    def get_magnet_field(self) -> float:
         """
         Gets the current magnetic field strength.
 
@@ -542,7 +542,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getMagneticField(ctypes.byref(field)))
         return field.value
 
-    def GetMagnetSetpoint(self) -> float:
+    def get_user_magnet_setpoint(self) -> float:
         """
         Gets the magnetic field setpoint.
 
@@ -553,7 +553,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getMagneticFieldSetPoint(ctypes.byref(setpoint)))
         return setpoint.value
 
-    def SetUserMagnetSetpoint(self, setpoint: float) -> None:
+    def set_user_magnet_setpoint(self, setpoint: float) -> None:
         """
         Sets the magnetic field setpoint.
 
@@ -562,7 +562,7 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_setUserMagneticField(c_float(setpoint)))
 
-    def GetMagnetSweepRate(self) -> float:
+    def get_magnet_sweep_rate(self) -> float:
         """
         Gets the current sweep rate for the magnet.
 
@@ -573,7 +573,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getMagnetSweepRate(ctypes.byref(rate)))
         return rate.value
 
-    def SetMagnetSweepRate(self, rate: float) -> None:
+    def set_magnet_sweep_rate(self, rate: float) -> None:
         """
         Sets the magnetic field sweep rate.
 
@@ -582,19 +582,19 @@ class AttoDRYInterface:
         """
         self._check_return(self._dll.AttoDRY_Interface_setMagnetSweepRate(c_float(rate)))
 
-    def MagnetSweep(self) -> None:
+    def magnet_sweep(self) -> None:
         """
         Starts sweeping the magnetic field to the setpoint.
         """
         self._check_return(self._dll.AttoDRY_Interface_magnetSweep())
 
-    def MagnetSweepCancel(self) -> None:
+    def magnet_sweep_cancel(self) -> None:
         """
         Cancels the current magnetic field sweep.
         """
         self._check_return(self._dll.AttoDRY_Interface_magnetSweepCancel())
 
-    def GetMagnetStatus(self) -> int:
+    def get_magnet_status(self) -> int:
         """
         Gets the status of the magnet.
 
@@ -605,7 +605,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getMagnetStatus(ctypes.byref(status)))
         return status.value
 
-    def GetErrorCount(self) -> int:
+    def get_error_count(self) -> int:
         """
         Gets the number of unread errors.
 
@@ -616,7 +616,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getErrorCount(ctypes.byref(count)))
         return count.value
 
-    def GetError(self) -> str:
+    def get_error(self) -> str:
         """
         Retrieves and clears the oldest error message from the buffer.
 
@@ -627,7 +627,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getError(buffer, c_int(256)))
         return buffer.value.decode('utf-8')
 
-    def GetWarningCount(self) -> int:
+    def get_warning_count(self) -> int:
         """
         Gets the number of unread warnings.
 
@@ -638,7 +638,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getWarningCount(ctypes.byref(count)))
         return count.value
 
-    def GetWarning(self) -> str:
+    def get_warning(self) -> str:
         """
         Retrieves and clears the oldest warning message from the buffer.
 
@@ -649,7 +649,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getWarning(buffer, c_int(256)))
         return buffer.value.decode('utf-8')
 
-    def GetSystemStatus(self) -> int:
+    def get_system_status(self) -> int:
         """
         Gets the system status code.
 
@@ -1121,7 +1121,7 @@ class AttoDRYInterface:
         return value.value
 
 
-    def get_magnetic_field_setpoint_axis(self, axis) -> float:
+    def get_user_magnetic_field_setpoint_axis(self, axis) -> float:
         """
         Gets the current magnetic field set point
 
