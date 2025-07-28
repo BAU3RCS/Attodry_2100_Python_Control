@@ -427,7 +427,7 @@ class AttoDRYInterface:
         self._check_return(self._dll.AttoDRY_Interface_getSampleTemperature(ctypes.byref(temp)))
         return temp.value
 
-    def get_user_temperature(self) -> float:
+    def get_user_temperature_setpoint(self) -> float:
         """
         Gets the user set point temperature, in Kelvin. This value is updated 
         whenever a status message is received from the attoDRY.

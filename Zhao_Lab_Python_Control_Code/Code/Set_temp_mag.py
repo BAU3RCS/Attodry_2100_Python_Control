@@ -20,7 +20,7 @@ print("Connected and Initliazed")
 
 print(f"VTI Temp. {AD.get_vti_temperature()}K")
 
-print(f"This is the User setpoint temp. {AD.get_user_temperature()}K")
+print(f"This is the User setpoint temp. {AD.get_user_temperature_setpoint()}K")
 print(f"This is the sample temp. {AD.get_sample_temperature()}K")
 
 AD.set_user_temperature(4)
@@ -28,7 +28,7 @@ AD.toggle_full_temperature_control()
 
 time.sleep(5)
 
-print(f"This is the User setpoint temp. {AD.get_user_temperature()}K")
+print(f"This is the User setpoint temp. {AD.get_user_temperature_setpoint()}K")
 print(f"This is the sample temp. {AD.get_sample_temperature()}K")
 
 #AD.toggle_magnetic_field_control()
